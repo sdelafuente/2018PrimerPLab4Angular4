@@ -1,0 +1,15 @@
+<div class="" style="border:1px solid black;">
+    <form class="" >
+        <input [(ngModel)]="miPersona.nombre" name="nombre" placeholder="Nombre" />
+        <br>
+        <input [(ngModel)]="miPersona.mail" name="mail" placeholder="Mail" />
+        <br>
+            M:<input name="sexo"  type="radio" [(ngModel)]="miPersona.sexo" [value]="0" [checked]="miPersona.sexo==0" />
+            F:<input name="sexo" type="radio" [(ngModel)]="miPersona.sexo" [value]="1" [checked]="miPersona.sexo==1" ><br/>
+        <br>
+        <input [(ngModel)]="miPersona.password" name="password" type="password" placeholder="Password" />
+        <br>
+        <!--input type="file" name="foto" [(ngModel)]="miPersona.foto" /-->
+        <button name="enviar" (click)="CargarPersona()">Enviar</button>
+    </form>
+</div>
