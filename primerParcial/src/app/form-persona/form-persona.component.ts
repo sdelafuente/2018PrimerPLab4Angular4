@@ -27,11 +27,11 @@ export class FormPersonaComponent implements OnInit {
     {
         let privPersona = new Persona(
             this.miPersona.nombre,
-            this.miPersona.mail,
+            this.miPersona.email,
             this.miPersona.sexo,
             this.miPersona.password
         );
-
+        console.log(privPersona);
         //let food = {name: name};
         this.service.CargarPersona(privPersona)
         .subscribe(

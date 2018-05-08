@@ -14,26 +14,72 @@ export class ListarPersonasComponent implements OnInit {
     //Array de personas
     @Input() arrayPersonas : Array<any>;
     @Input() error : Array<any>;
+
     public estaCargado : boolean = false;
-
-
 
     //Objeto Persona
     persona : Persona;
+    public miPersona = new Persona("","","","");
 
-    constructor(public service : ApiService) { }
-
-    ngOnInit() {
-        this.BuscarTodos();
+    constructor(public service : ApiService) {
+        this.arrayPersonas = new Array<any>();
     }
 
+    ngOnInit() {
+        this.buscarTodos();
+    }
 
-    public BorrarPersona(persona)
+    //Traigo todas las personas
+    buscarTodos(){
+
+        this.service.traerPersonas().then(
+            data => {
+                this.arrayPersonas = data;
+                this.estaCargado = true;
+                //this.enviarPersonas.emit(this.arrData);
+        });
+    }
+
+    public cargarPersona()
+    {
+        let privPersona = new Persona(
+            this.miPersona.nombre,
+            this.miPersona.email,
+            this.miPersona.sexo,
+            this.miPersona.password
+        );
+        console.log(privPersona);
+
+        this.service.CargarPersona(privPersona)
+        .subscribe(
+           data => {
+             // refresh the list
+             this.buscarTodos();
+             return true;
+           },
+           error => {
+             console.error("Error saving food!");
+             //console.error(error);
+             return false;//Observable.throw(error);
+           }
+        );
+    }
+
+    public modificarPersona(persona)
+    {
+        this.miPersona.nombre = persona.nombre;
+        //this.miPersona.email,
+        //this.miPersona.sexo,
+        //this.miPersona.password
+    }
+
+    public borrarPersona(persona)
     {
         this.service.BorrarPersona('/borrar/',persona)
         .subscribe(
            data => {
-             return true;
+                this.buscarTodos();
+                return true;
            },
            error => {
              console.error("Error borrando persona");
@@ -43,15 +89,6 @@ export class ListarPersonasComponent implements OnInit {
         );
     }
 
-    //Traigo todas las personas
-    BuscarTodos(){
 
-        this.service.traerPersonas().then(
-            data => {
-                this.arrayPersonas = data;
-                this.estaCargado = true;
-                //this.enviarPersonas.emit(this.arrData);
-        });
-    }
 
 }

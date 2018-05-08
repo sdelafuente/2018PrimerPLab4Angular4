@@ -26,7 +26,8 @@ export class ApiService {
     {
         console.log(persona);
         return this.http
-        .post(this.urlC  + '/persona/agregar/', persona )
+        .post(this.urlC  + '/persona/agregar/', persona, )
+        //headers: { "Access-Control-Allow-Origin": "http://localhost:4000", "Access-Control-Allow-Credentials": "true" }
         .map((res: Response) => res.json());
     }
 
