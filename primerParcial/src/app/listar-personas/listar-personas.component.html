@@ -11,6 +11,9 @@
         <br>
         <!--input type="file" name="foto" [(ngModel)]="miPersona.foto" /-->
         <button name="enviar" (click)="cargarPersona()">Enviar</button>
+        <input type="checkbox" id="chkModificar" name="chkModificar" value="">
+
+        <!--button name="modificar" (click)="modificarPersona()">modificar</button-->
     </form>
 </div>
 <div class="">
@@ -30,12 +33,15 @@
             <td>{{persona.nombre}}</td>
             <td>{{persona.email}}</td>
             <td>{{(persona.sexo == 0) ? 'M' : 'F'}}</td>
-            <td><img width="20" height="20" [src]="'http://localhost:8080/fotos/'+persona.email+'.jpg'"  alt="" />  </td>
+            <td>
+                <!--img width="20" height="20" [src]="'http://localhost:8080/fotos/'+persona.email+'.jpg'"  alt="" /-->
+                foto
+            </td>
             <td>
                 <input type="button" name="btnBorrar+'persona.email'" (click)="borrarPersona(persona)" value="Eliminar" />
             </td>
-            <td>
-                <input type="checkbox" name="chkModificar+'persona.email'" (click)="modificarPersona(persona)" value="">
+            <td >
+                <input type="button" id="btnModificar_+'persona.id'" (click)="cargarObjeto(persona)" value="Modificar">
             </td>
         </tr>
     </table>

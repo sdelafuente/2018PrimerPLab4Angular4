@@ -15,7 +15,7 @@ export class FormPersonaComponent implements OnInit {
 
     //@Output() enviarPersona : EventEmitter<Persona> = new EventEmitter<Persona>();
 
-    public miPersona = new Persona("","","","");
+    public miPersona = new Persona("","","","","");
 
 
     constructor(public service : ApiService) { }
@@ -29,7 +29,8 @@ export class FormPersonaComponent implements OnInit {
             this.miPersona.nombre,
             this.miPersona.email,
             this.miPersona.sexo,
-            this.miPersona.password
+            this.miPersona.password,
+            0
         );
         console.log(privPersona);
         //let food = {name: name};

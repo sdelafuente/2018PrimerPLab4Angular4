@@ -5,11 +5,12 @@ export class Persona {
     public password : string;
     public id : number;
 
-    constructor(name, email, sex, pass)
+    constructor(name, email, sex, pass, id)
     {
         this.nombre = name;
         this.email = email;
         this.sexo = sex;
         this.password = pass;
+        this.id = id;
     }
 }

@@ -27,7 +27,6 @@ export class ApiService {
         console.log(persona);
         return this.http
         .post(this.urlC  + '/persona/agregar/', persona, )
-        //headers: { "Access-Control-Allow-Origin": "http://localhost:4000", "Access-Control-Allow-Credentials": "true" }
         .map((res: Response) => res.json());
     }
 
@@ -38,19 +37,18 @@ export class ApiService {
         .map((res: Response) => res.json());
     }
 
-    /*
-    public modificarPersona( url: string, objeto: any )
+    public modificarPersona( url: string, persona: Persona )
     {
+        console.log(persona);
+
         return this.http
-        .post( url )
-        .subscribe( data => {
-          console.log( data );
-          return data;
-        });
+        .post( this.urlC  + '/persona' + url,persona )
+        .map((res: Response) => res.json());
+        
     }
 
 
-    */
+
     public httpGetO ( url: string): Observable<Response>
     {
         return this.http.get( url )
