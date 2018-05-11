@@ -1,13 +1,27 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-    <h1>Primer Parcial </h1>
-</div>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<div class="">
-    <app-form-persona></app-form-persona>
-</div>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
-<div class="">
-    <app-listar-personas  [arrayPersonas]="arrPersonas" ></app-listar-personas>
-</div>
-<br>
+        <title>Laboratorio IV - Primer Parcial</title>
+    </head>
+    <body class="bg-primary">
+        <div class="container">
+            <div class="page-header text-center bg-dark text-muted">
+                <h1>My First Bootstrap Page</h1>
+                <p>Resize this responsive page to see the effect!</p>
+            </div>
+            <div class="row ">
+                <app-form-persona class="col-md-12" ></app-form-persona>
+            </div>
+            <div class="row">
+                <app-listar-personas class="col-md-12" [arrayPersonas]="arrPersonas" ></app-listar-personas>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,48 +1,52 @@
-<div class="" style="border:1px solid black;">
-    <form class="" >
-        <input [(ngModel)]="miPersona.nombre" name="nombre" placeholder="Nombre" />
-        <br>
-        <input [(ngModel)]="miPersona.email" name="email" placeholder="E-Mail" />
-        <br>
-            M:<input name="sexo"  type="radio" [(ngModel)]="miPersona.sexo" [value]="0" [checked]="miPersona.sexo==0" />
-            F:<input name="sexo" type="radio" [(ngModel)]="miPersona.sexo" [value]="1" [checked]="miPersona.sexo==1" ><br/>
-        <br>
-        <input [(ngModel)]="miPersona.password" name="password" type="password" placeholder="Password" />
-        <br>
-        <!--input type="file" name="foto" [(ngModel)]="miPersona.foto" /-->
-        <button name="enviar" (click)="cargarPersona()">Enviar</button>
-        <input type="checkbox" id="chkModificar" name="chkModificar" value="">
+<div >
+    <div class="row bg-success" style="border:1px solid white; margin-bottom:2px;">
+        <form class="w-75" >
+            <input type="text" [(ngModel)]="miPersona.nombre" name="nombre" placeholder="Nombre" />
+            <br>
+            <input type="text" [(ngModel)]="miPersona.email" name="email" placeholder="E-Mail" />
+            <br>
+            <input [(ngModel)]="miPersona.password" name="password" type="password" placeholder="Password" />
+            <br>
+                M:<input name="sexo"  type="radio" [(ngModel)]="miPersona.sexo" [value]="0" [checked]="miPersona.sexo==0" />
+                F:<input name="sexo" type="radio" [(ngModel)]="miPersona.sexo" [value]="1" [checked]="miPersona.sexo==1" >
+            <br/>
+            <!--input type="file" name="foto" [(ngModel)]="miPersona.foto" /-->
+            <button name="enviar" (click)="cargarPersona()">Enviar</button>
+            <input type="checkbox" id="chkModificar" name="chkModificar" value="">
 
-        <!--button name="modificar" (click)="modificarPersona()">modificar</button-->
-    </form>
-</div>
-<div class="">
-    <h2>Lista de Personas</h2>
+            <!--button name="modificar" (click)="modificarPersona()">modificar</button-->
+        </form>
+    </div>
+    <div class="row text-uppercase bg-warning " style="border:1px solid red; padding:5px;">
+        <h3 class="text-muted" >Lista de Personas</h3>
 
-    <table id="customers" *ngIf="estaCargado">
-        <tr>
-            <th>Nombre</th>
-            <th>Mail</th>
-            <th>Sexo</th>
-            <th>Foto</th>
-            <th>Borrar</th>
-            <th>Modificar</th>
-        </tr>
+        <!-- LA TABLA YA TIENE ESTILOS PRECARGADOS EN EL CSS -->
+        <table id="customers" *ngIf="estaCargado" class="">
+            <tr>
+                <th>Nombre</th>
+                <th>Mail</th>
+                <th>Sexo</th>
+                <th>Foto</th>
+                <th>Borrar</th>
+                <th>Modificar</th>
+            </tr>
 
-        <tr *ngFor="let persona of arrayPersonas" [ngStyle]="{'background-color': (!persona.sexo) ? '#66CCFF' : '#FF9999' }">
-            <td>{{persona.nombre}}</td>
-            <td>{{persona.email}}</td>
-            <td>{{(persona.sexo == 0) ? 'M' : 'F'}}</td>
-            <td>
-                <!--img width="20" height="20" [src]="'http://localhost:8080/fotos/'+persona.email+'.jpg'"  alt="" /-->
-                foto
-            </td>
-            <td>
-                <input type="button" name="btnBorrar+'persona.email'" (click)="borrarPersona(persona)" value="Eliminar" />
-            </td>
-            <td >
-                <input type="button" id="btnModificar_+'persona.id'" (click)="cargarObjeto(persona)" value="Modificar">
-            </td>
-        </tr>
-    </table>
+            <tr *ngFor="let persona of arrayPersonas" [ngStyle]="{'background-color': (!persona.sexo) ? '#66CCFF' : '#FF9999' }">
+                <td>{{persona.nombre}}</td>
+                <td>{{persona.email}}</td>
+                <td>{{(persona.sexo == 0) ? 'M' : 'F'}}</td>
+                <td>
+                    <!--img width="20" height="20" [src]="'http://localhost:8080/fotos/'+persona.email+'.jpg'"  alt="" /-->
+                    foto
+                </td>
+                <td>
+                    <input type="button" name="btnBorrar+'persona.email'" (click)="borrarPersona(persona)" value="Eliminar" />
+                </td>
+                <td >
+                    <input type="button" id="btnModificar_+'persona.id'" (click)="cargarObjeto(persona)" value="Modificar">
+                </td>
+            </tr>
+        </table>
+    </div>
+
 </div>

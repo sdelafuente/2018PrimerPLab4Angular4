@@ -15,9 +15,7 @@ export class ListarPersonasComponent implements OnInit {
     @Input() arrayPersonas : Array<any>;
     @Input() error : Array<any>;
 
-    public modificarObjeto : boolean = false;
-    private flag : boolean;
-
+    private estaCargado : boolean = false;
     //Objeto Persona
     persona : Persona;
     public miPersona = new Persona("","","","","");
@@ -28,7 +26,6 @@ export class ListarPersonasComponent implements OnInit {
 
     ngOnInit() {
         this.buscarTodos();
-        this.flag = false;
     }
 
     //Traigo todas las personas
@@ -36,6 +33,7 @@ export class ListarPersonasComponent implements OnInit {
 
         this.service.traerPersonas().then(
             data => {
+                this.estaCargado = true;
                 this.arrayPersonas = data;
                 //this.enviarPersonas.emit(this.arrData);
         });
@@ -50,7 +48,6 @@ export class ListarPersonasComponent implements OnInit {
             this.miPersona.password,
             this.miPersona.id
         );
-        //console.log(privPersona);
 
         this.service.CargarPersona(privPersona)
         .subscribe(
@@ -62,7 +59,6 @@ export class ListarPersonasComponent implements OnInit {
            },
            error => {
              console.error("Error saving food!");
-             //console.error(error);
              return false;//Observable.throw(error);
            }
         );
@@ -77,7 +73,7 @@ export class ListarPersonasComponent implements OnInit {
             this.miPersona.password,
             this.miPersona.id
         );
-        //console.log(privPersona);
+
         this.service.modificarPersona('/modificar/',privPersona)
         .subscribe(
            data => {
@@ -86,7 +82,6 @@ export class ListarPersonasComponent implements OnInit {
            },
            error => {
              console.error("Error modificando persona");
-             //console.error(error);
              return false;//Observable.throw(error);
            }
         );
