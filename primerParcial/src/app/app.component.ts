@@ -11,17 +11,14 @@ export class AppComponent {
     arrPersonas : Array<any> = new Array<any>();
     mail : string;
     prsnaBorrar : any;
-    //arrError : Array<any> = new Array<any>();
 
     Datos(evento,bool){
         this.arrPersonas = [];
-        //this.arrError = [];
 
         if(bool == 1){
           this.arrPersonas = (evento);
         } else{
 
-        //  this.arrError = (evento);
         }
     }
 

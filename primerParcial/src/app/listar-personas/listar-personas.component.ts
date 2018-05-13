@@ -14,18 +14,21 @@ export class ListarPersonasComponent implements OnInit {
     //Array de personas
     @Input() arrayPersonas : Array<any>;
     @Input() error : Array<any>;
+    @Input() btnCheck : boolean;
 
-    private estaCargado : boolean = false;
+    private estaCargado : boolean;
+    private mostrarLista : boolean = false;
     //Objeto Persona
     persona : Persona;
     public miPersona = new Persona("","","","","");
 
-    constructor(public service : ApiService) {
+    constructor(private service : ApiService) {
         this.arrayPersonas = new Array<any>();
     }
 
     ngOnInit() {
         this.buscarTodos();
+        this.estaCargado = false;
     }
 
     //Traigo todas las personas
@@ -33,13 +36,25 @@ export class ListarPersonasComponent implements OnInit {
 
         this.service.traerPersonas().then(
             data => {
-                this.estaCargado = true;
+                this.mostrarLista = true;
                 this.arrayPersonas = data;
-                //this.enviarPersonas.emit(this.arrData);
         });
     }
+    public esModificar(boleano)
+    {
+        this.estaCargado = boleano;
 
-    public cargarPersona()
+    }
+    public cargar()
+    {
+        if(this.estaCargado){
+            this.modificarPersona();
+        }else{
+            this.cargarPersona();
+        }
+    }
+
+    private cargarPersona()
     {
         let privPersona = new Persona(
             this.miPersona.nombre,
@@ -49,22 +64,21 @@ export class ListarPersonasComponent implements OnInit {
             this.miPersona.id
         );
 
-        this.service.CargarPersona(privPersona)
+        this.service.CargarPersona("/agregar/",privPersona)
         .subscribe(
            data => {
-             // refresh the list
              this.buscarTodos();
              this.miPersona = new Persona("","","","","");
              return true;
            },
            error => {
              console.error("Error saving food!");
-             return false;//Observable.throw(error);
+             return false;
            }
         );
     }
 
-    modificarPersona()
+    private modificarPersona()
     {
         let privPersona = new Persona(
             this.miPersona.nombre,
@@ -78,20 +92,21 @@ export class ListarPersonasComponent implements OnInit {
         .subscribe(
            data => {
                 this.buscarTodos();
+                this.miPersona = new Persona("","","","",0);
                 return true;
            },
            error => {
              console.error("Error modificando persona");
-             return false;//Observable.throw(error);
+             return false;
            }
         );
 
     }
 
+
     public cargarObjeto(persona)
     {
         this.miPersona = new Persona(persona.nombre, persona.email, persona.sexo,persona.password,persona.id);
-        //console.error(this.miPersona);
         return true;
     }
 
@@ -106,7 +121,7 @@ export class ListarPersonasComponent implements OnInit {
            error => {
              console.error("Error borrando persona");
              //console.error(error);
-             return false;//Observable.throw(error);
+             return false;
            }
         );
     }

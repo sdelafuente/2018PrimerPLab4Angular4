@@ -22,11 +22,10 @@ export class ApiService {
         .catch( this.handleError );
     }
 
-    public CargarPersona( persona: Persona )
+    public CargarPersona( url: string,persona: Persona )
     {
-        console.log(persona);
         return this.http
-        .post(this.urlC  + '/persona/agregar/', persona, )
+        .post(this.urlC  + '/persona' + url, persona, )
         .map((res: Response) => res.json());
     }
 
@@ -44,7 +43,7 @@ export class ApiService {
         return this.http
         .post( this.urlC  + '/persona' + url,persona )
         .map((res: Response) => res.json());
-        
+
     }
 
 

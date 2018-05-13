@@ -1,7 +1,7 @@
 <div >
-    <div class="row bg-success" style="border:1px solid white; margin-bottom:2px;">
+    <div class="row bg-success" style="margin-bottom:2px;">
         <form class="w-75" >
-            <input type="text" [(ngModel)]="miPersona.nombre" name="nombre" placeholder="Nombre" />
+            <input type="text" class=""[(ngModel)]="miPersona.nombre" name="nombre" placeholder="Nombre" />
             <br>
             <input type="text" [(ngModel)]="miPersona.email" name="email" placeholder="E-Mail" />
             <br>
@@ -11,17 +11,17 @@
                 F:<input name="sexo" type="radio" [(ngModel)]="miPersona.sexo" [value]="1" [checked]="miPersona.sexo==1" >
             <br/>
             <!--input type="file" name="foto" [(ngModel)]="miPersona.foto" /-->
-            <button name="enviar" (click)="cargarPersona()">Enviar</button>
-            <input type="checkbox" id="chkModificar" name="chkModificar" value="">
+            <button name="enviar" class="btn btn-default" (click)="cargar()">Enviar</button>
+            <input #javascriptcb type="checkbox" (change)="esModificar( javascriptcb.checked )" />
 
             <!--button name="modificar" (click)="modificarPersona()">modificar</button-->
         </form>
     </div>
-    <div class="row text-uppercase bg-warning " style="border:1px solid red; padding:5px;">
+    <div class="row text-uppercase bg-warning " style="padding:10px;">
         <h3 class="text-muted" >Lista de Personas</h3>
 
         <!-- LA TABLA YA TIENE ESTILOS PRECARGADOS EN EL CSS -->
-        <table id="customers" *ngIf="estaCargado" class="">
+        <table id="customers" *ngIf="mostrarLista" class="">
             <tr>
                 <th>Nombre</th>
                 <th>Mail</th>
