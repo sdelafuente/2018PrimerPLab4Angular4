@@ -9,8 +9,9 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class ApiService {
 
-    //urlC = 'https://localhost/api';
+    //urlC = 'https://localhost/api/index.php';
     urlC = 'http://localhost:8080';
+    //urlC = 'https://proyectocuatro.000webhostapp.com/api';
 
     constructor( public http: Http ) { }
 

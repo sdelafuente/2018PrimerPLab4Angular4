@@ -34,11 +34,9 @@ export class ListarPersonasComponent implements OnInit {
     //Traigo todas las personas
     buscarTodos(){
 
-        this.service.traerPersonas().then(
-            data => {
-                this.mostrarLista = true;
-                this.arrayPersonas = data;
-        });
+        this.service.traerPersonas()
+        .then( data => { this.mostrarLista = true; this.arrayPersonas = data; })
+        .catch( error => {console.log(error)});
     }
     public esModificar(boleano)
     {
@@ -72,7 +70,8 @@ export class ListarPersonasComponent implements OnInit {
              return true;
            },
            error => {
-             console.error("Error saving food!");
+                console.log(error);
+             console.error("Error guardando una persona");
              return false;
            }
         );
@@ -125,7 +124,5 @@ export class ListarPersonasComponent implements OnInit {
            }
         );
     }
-
-
 
 }
