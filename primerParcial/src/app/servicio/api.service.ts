@@ -26,12 +26,14 @@ export class ApiService {
     public CargarPersona( url: string,persona: Persona )
     {
         return this.http
-        .post(this.urlC  + '/persona' + url, persona, )
+        .post(this.urlC  + '/persona' + url, persona )
         .map((res: Response) => res.json());
     }
 
     public BorrarPersona( url: string, persona: Persona )
     {
+        //console.log({"tipo":"admin","email":persona.email});
+
         return this.http
         .post(this.urlC  + '/persona' + url, persona )
         .map((res: Response) => res.json());
@@ -39,16 +41,12 @@ export class ApiService {
 
     public modificarPersona( url: string, persona: Persona )
     {
-        console.log(persona);
-
         return this.http
         .post( this.urlC  + '/persona' + url,persona )
         .map((res: Response) => res.json());
 
     }
-
-
-
+    
     public httpGetO ( url: string): Observable<Response>
     {
         return this.http.get( url )

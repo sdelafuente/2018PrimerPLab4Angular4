@@ -4,6 +4,7 @@ export class Persona {
     public sexo : number;
     public password : string;
     public id : number;
+    public tipo : string = '';
 
     constructor(name, email, sex, pass, id)
     {

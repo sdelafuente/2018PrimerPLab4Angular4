@@ -62,6 +62,8 @@ export class ListarPersonasComponent implements OnInit {
             this.miPersona.id
         );
 
+        privPersona.tipo = "admin";
+
         this.service.CargarPersona("/agregar/",privPersona)
         .subscribe(
            data => {
@@ -111,6 +113,7 @@ export class ListarPersonasComponent implements OnInit {
 
     public borrarPersona(persona)
     {
+        //persona.tipo = "admin";
         this.service.BorrarPersona('/borrar/',persona)
         .subscribe(
            data => {
